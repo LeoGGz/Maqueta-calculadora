@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function calcularResultado() {
       try {
-        resultado = eval(operacion);
+        resultado = realizarCalculo(operacion);
         actualizarPantalla(resultado);
       } catch (error) {
         actualizarPantalla('Error');
@@ -49,5 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function actualizarPantalla(valor) {
       pantalla.textContent = valor;
+    }
+
+    function realizarCalculo(expresion){
+      try {
+        return new Function('return ' + expresion)();
+      } catch (error){
+        throw new Error('Error');
+      }
     }
   });
